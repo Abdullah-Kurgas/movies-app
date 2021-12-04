@@ -1,0 +1,5 @@
+<div class="m-5">
+    <h4>Favorite movies</h4>
+    <span *ngIf="favorites.length == 0">No favorites</span>
+</div>
+<app-movie [movies]="favorites"></app-movie>

@@ -1,0 +1,20 @@
+<div class="dashboard">
+    <div class="categories d-flex justify-content-center mt-3">
+        <div (click)="showPopularBtn()">
+            <span [ngClass]="{active: activeC == 'popular'}">Popular</span>
+        </div>
+        <div (click)="showTopRatedBtn()">
+            <span [ngClass]="{active: activeC == 'top-rated'}">Top Rated</span>
+        </div>
+        <div (click)="showUpcomingBtn()">
+            <span [ngClass]="{active: activeC == 'upcoming'}">Upcoming</span>
+        </div>
+    </div>
+
+    <!-- Showing movies -->
+    <app-movie [movies]="movies"></app-movie>
+
+    <div class="d-flex justify-content-center mb-3">
+        <button class="btn btn-outline-secondary" (click)="loadMore()">Load More</button>
+    </div>
+</div>
