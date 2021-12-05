@@ -12,9 +12,11 @@
 </div>
 
 <div class="moviesDiv" [class]="shown ? '' : 'none'">
+
     <div class="d-flex justify-content-center" *ngIf="searchedMovies?.results.length == 0">
         <span>No matches</span>
     </div>
+
     <div class="smMovie" *ngFor="let movie of searchedMovies?.results" (click)="showMovieDetail(movie)">
         <div class="imageDiv">
             <img [src]="imageUrl + movie.poster_path" alt="poster" *ngIf="movie.poster_path !== null">
@@ -46,5 +48,4 @@
         </div>
 
     </div>
-
 </div>

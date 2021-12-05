@@ -7,6 +7,7 @@
             <span class="name">{{movie.title}} ({{movie.release_date?.substr(0,4)}})</span>
             <div class="rat-gen mt-2">
                 <span class="rating"><i class="bi bi-star-fill"></i>{{movie.vote_average.toFixed(1) / 2}}/5</span>
+                <span>min</span>
             </div>
             <div class="genres">
                 <div *ngFor="let key of movie.genre_ids">
