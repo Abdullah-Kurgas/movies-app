@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from 'src/app/components/shared/spinner.service';
 import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   page: number = 1;
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    public spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -27,12 +29,16 @@ export class DashboardComponent implements OnInit {
     this.getPopular()
   }
   getPopular() {
+    this.spinnerService.showLoading();
     this.movieService.getPopularMovie(this.page).subscribe(
       (moviesDB: any) => {
         moviesDB.results.forEach((movie: any, i: number) => {
           if (i < 12) {
             this.movies.push(movie);
           }
+
+          this.spinnerService.hideLoading();
+          this.spinnerService.hideFullScreen();
           return;
         });
       }
@@ -46,12 +52,14 @@ export class DashboardComponent implements OnInit {
     this.getTopRated()
   }
   getTopRated() {
+    this.spinnerService.showLoading();
     this.movieService.getTopRatedMovie(this.page).subscribe(
       (moviesDB: any) => {
         moviesDB.results.forEach((movie: any, i: number) => {
           if (i < 12) {
             this.movies.push(movie);
           }
+          this.spinnerService.hideLoading();
           return;
         });
       }
@@ -65,12 +73,14 @@ export class DashboardComponent implements OnInit {
     this.getUpcoming();
   }
   getUpcoming() {
+    this.spinnerService.showLoading();
     this.movieService.getUpcomingMovie(this.page).subscribe(
       (moviesDB: any) => {
         moviesDB.results.forEach((movie: any, i: number) => {
           if (i < 12) {
             this.movies.push(movie);
           }
+          this.spinnerService.hideLoading();
           return;
         });
       }

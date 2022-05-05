@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from 'src/app/components/shared/spinner.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,10 +10,14 @@ export class FavoritesComponent implements OnInit {
 
   favorites: any;
 
-  constructor() { }
+  constructor(private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+    setTimeout(()=>{
+      this.spinnerService.hideFullScreen();
+    },0)
   }
 
 }

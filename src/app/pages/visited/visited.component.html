@@ -1,6 +1,11 @@
 <div class="d-flex justify-content-between m-5">
     <h4>Visited movies</h4>
-    <button class="btn btn-danger" (click)="clearHistory()">Clear history</button>
+
+    <button class="btn btn-danger" type="button" [disabled]="spinnerService.isLoading || visited.length === 0" (click)="clearHistory()">
+        <span class="spinner-border spinner-border-sm" role="status" [hidden]="!spinnerService.isLoading"></span>
+        <span class="visually-hidden">Loading...</span>
+        Clear history
+      </button>
 </div>
 <span class="mx-5" *ngIf="visited.length == 0">History is empty</span>
 <div>

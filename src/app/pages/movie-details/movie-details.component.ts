@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SpinnerService } from 'src/app/components/shared/spinner.service';
 import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
@@ -20,8 +21,9 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(
     private activatedRouter: ActivatedRoute,
+    private movieService: MovieService,
+    private spinnerService:SpinnerService,
     private router: Router,
-    private movieService: MovieService
   ) {
     this.router.events.subscribe(() => this.ngOnInit())
   }
@@ -29,11 +31,10 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRouter.snapshot.params['id'];
     this.getMovieById();
-    this.getRecommended();
-    this.getSimilar();
   }
 
   getMovieById() {
+    this.spinnerService.showFullScreen();
     this.movieService.getMovieById(this.id).subscribe(
       movie => {
         this.movie = movie;
@@ -42,6 +43,7 @@ export class MovieDetailsComponent implements OnInit {
             this.movie.favorite = favorite.favorite;
           }
         });
+        this.getRecommended();
       }
     )
   }
@@ -51,6 +53,7 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getRecommended(this.id).subscribe(
       recommended => {
         this.recommendedM = recommended;
+        this.getSimilar();
       }
     )
   }
@@ -58,6 +61,7 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getSimilar(this.id).subscribe(
       similar => {
         this.similarM = similar;
+        this.spinnerService.hideFullScreen();
       }
     )
   }
@@ -71,7 +75,6 @@ export class MovieDetailsComponent implements OnInit {
           if (this.movie.id == favorite.id) {
             this.localFavorites.splice(i, 1);
             localStorage.setItem("favorites", JSON.stringify(this.localFavorites));
-
           }
         });
       }

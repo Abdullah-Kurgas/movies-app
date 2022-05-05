@@ -12,6 +12,7 @@ import { VisitedComponent } from './pages/visited/visited.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { SearchedComponent } from './pages/searched/searched.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SearchedComponent } from './pages/searched/searched.component';
     MovieComponent,
     MovieDetailsComponent,
     SearchedComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

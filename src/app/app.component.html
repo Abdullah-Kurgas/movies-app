@@ -1,4 +1,7 @@
+<app-spinner *ngIf="spinnerService.isFullScreen"></app-spinner>
 <div [class]="!router.url.includes('movie') ? 'mx-3':''">
-    <app-menu></app-menu>
+    <div [class]="router.url.includes('movie') ? 'mx-3':''">
+        <app-menu></app-menu>
+    </div>
     <router-outlet></router-outlet>
 </div>

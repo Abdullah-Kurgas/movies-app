@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { SpinnerService } from './components/shared/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(public router: Router) {}
+  constructor(public router: Router, public spinnerService: SpinnerService) {
+    router.events
+    .pipe(filter((event) => event instanceof NavigationEnd))
+    .subscribe(() => {
+      spinnerService.showFullScreen();
+    });
+  }
+  
   title = 'movie-project';
 }
