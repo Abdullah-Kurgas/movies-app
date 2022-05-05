@@ -88,6 +88,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadMore() {
+    this.spinnerService.showLoading();
     this.page += 1;
     if (this.activeC == "popular") return this.getPopular();
     if (this.activeC == "top-rated") return this.getTopRated();

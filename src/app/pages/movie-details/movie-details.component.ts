@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { SpinnerService } from 'src/app/components/shared/spinner.service';
 import { environment } from 'src/environments/environment.prod';
 import { MovieService } from '../../components/shared/movie.service';
@@ -9,7 +10,7 @@ import { MovieService } from '../../components/shared/movie.service';
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.scss']
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent {
 
   rating: number = Math.round(3);
   id!: number;
@@ -27,12 +28,12 @@ export class MovieDetailsComponent implements OnInit {
     private spinnerService:SpinnerService,
     private router: Router,
   ) {
-    this.router.events.subscribe(() => this.ngOnInit())
-  }
-
-  ngOnInit(): void {
-    this.id = this.activatedRouter.snapshot.params['id'];
-    this.getMovieById();
+    router.events
+    .pipe(filter((event) => event instanceof NavigationEnd))
+    .subscribe(() => {
+      this.id = this.activatedRouter.snapshot.params['id'];
+      this.getMovieById();
+    });
   }
 
   getMovieById() {
@@ -63,6 +64,8 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getSimilar(this.id).subscribe(
       similar => {
         this.similarM = similar;
+        console.log('test');
+        
         this.spinnerService.hideFullScreen();
       }
     )
@@ -86,8 +89,6 @@ export class MovieDetailsComponent implements OnInit {
 
         this.localFavorites.push(this.movie);
         localStorage.setItem("favorites", JSON.stringify(this.localFavorites));
-
-        this.ngOnInit();
       }
     }
   }

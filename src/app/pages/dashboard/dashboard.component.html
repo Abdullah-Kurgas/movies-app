@@ -11,16 +11,16 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center my-4" *ngIf="spinnerService.isLoading">
+    <!-- Showing movies -->
+    <app-movie [movies]="movies"></app-movie>
+    
+    <div class="d-flex justify-content-center mb-3" *ngIf="spinnerService.isLoading">
         <div class="spinner-border " role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Showing movies -->
-    <app-movie [movies]="movies"></app-movie>
-
     <div class="d-flex justify-content-center mb-3">
-        <button class="btn btn-outline-secondary" (click)="loadMore()">Load More</button>
+        <button class="btn btn-outline-secondary" [disabled]="spinnerService.isLoading" (click)="loadMore()">Load More</button>
     </div>
 </div>
