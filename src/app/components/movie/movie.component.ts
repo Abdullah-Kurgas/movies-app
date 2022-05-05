@@ -24,7 +24,7 @@ export class MovieComponent implements OnInit {
   }
 
   showMovieDetail(movie: any) {
-    this.router.navigateByUrl("/movie-details/" + movie.id);
+    this.router.navigateByUrl("/movie/" + movie.id);
     this.visited = JSON.parse(localStorage.getItem("visited") || "[]");
     this.visited.push(movie);
     localStorage.setItem("visited", JSON.stringify(this.visited));

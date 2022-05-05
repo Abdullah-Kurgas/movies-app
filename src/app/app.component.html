@@ -1,4 +1,4 @@
-<div class="mx-3">
+<div [class]="!router.url.includes('movie') ? 'mx-3':''">
     <app-menu></app-menu>
     <router-outlet></router-outlet>
 </div>
