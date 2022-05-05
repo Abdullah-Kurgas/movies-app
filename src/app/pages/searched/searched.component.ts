@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SpinnerService } from 'src/app/components/shared/spinner.service';
 import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class SearchedComponent implements OnInit {
   constructor(
     private routerA: ActivatedRoute,
     private movieService: MovieService,
+    private spinnerService: SpinnerService,
     private router: Router
   ) {
     this.router.events.subscribe(() => this.ngOnInit())
@@ -29,6 +31,8 @@ export class SearchedComponent implements OnInit {
     this.movieService.searchMovie(searchName.name).subscribe(
       movies => {
         this.searchedMovies = movies;
+
+        this.spinnerService.hideFullScreen();
       }
     )
   }

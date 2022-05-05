@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieService } from '../shared/movie.service';
+import { SpinnerService } from '../shared/spinner.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,8 +18,9 @@ export class MenuComponent implements OnInit {
   visited: any = [];
 
   constructor(
+    private movieService: MovieService,
+    public spinnerService: SpinnerService,
     private router: Router,
-    private movieService: MovieService
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,6 @@ export class MenuComponent implements OnInit {
   }
 
   sensSearch(e: any) {
-
     if (e.keyCode == 13) {
       this.shown = false;
       return;
@@ -40,11 +41,14 @@ export class MenuComponent implements OnInit {
       this.shown = false;
       return;
     };
+    this.spinnerService.showLoading();
 
     this.movieService.searchMovie(this.searchName).subscribe(
       movies => {
         this.searchedMovies = movies;
         this.shown = true;
+
+        this.spinnerService.hideLoading();
       }
     )
   }
