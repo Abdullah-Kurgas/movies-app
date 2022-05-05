@@ -1,12 +1,12 @@
 <div class="dashboard">
-    <div class="categories d-flex justify-content-center mt-3">
-        <div (click)="showPopularBtn()">
+    <div class="categories row justify-content-center mt-3">
+        <div (click)="showPopularBtn()" class="col-4 col-sm-2 col-md-2 col-lg-1">
             <span [ngClass]="{active: activeC == 'popular'}">Popular</span>
         </div>
-        <div (click)="showTopRatedBtn()">
+        <div (click)="showTopRatedBtn()" class="col-4 col-sm-2 col-md-2 col-lg-2">
             <span [ngClass]="{active: activeC == 'top-rated'}">Top Rated</span>
         </div>
-        <div (click)="showUpcomingBtn()">
+        <div (click)="showUpcomingBtn()" class="col-4 col-sm-2 col-md-2 col-lg-1">
             <span [ngClass]="{active: activeC == 'upcoming'}">Upcoming</span>
         </div>
     </div>

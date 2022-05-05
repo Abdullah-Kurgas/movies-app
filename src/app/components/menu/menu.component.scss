@@ -11,6 +11,7 @@ div {
         border: unset;
         background-color: #dadadacc;
         box-sizing: border-box;
+        max-width: 15rem;
 
         &:focus {
             outline: unset;
@@ -19,7 +20,7 @@ div {
     }
 
     img {
-        width: 8vw;
+        width: 6rem;
         cursor: pointer;
     }
 

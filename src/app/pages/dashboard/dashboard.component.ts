@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../shared/movie.service';
+import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../shared/movie.service';
+import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
   selector: 'app-searched',

@@ -1,6 +1,6 @@
-<div class="movies p-4">
+<div class="row py-4">
 
-    <div class="movie" (click)="showMovieDetail(movie)" *ngFor="let movie of movies">
+    <div class="movie col-6 col-sm-4 col-md-3 col-lg-2" (click)="showMovieDetail(movie)" *ngFor="let movie of movies">
         <img [src]="imageUrl + movie.poster_path" alt="poster" *ngIf="movie.poster_path !== null">
         <img [src]="'../../../assets/blank-image.jpg'" alt="image" *ngIf="movie.poster_path == null">
         <div class="info" [class]="movie.vote_average.toFixed(1) < 6 ? 'bg-red' : '' ">

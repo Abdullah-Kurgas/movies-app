@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
-import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
-import { SearchedComponent } from './components/searched/searched.component';
-import { VisitedComponent } from './components/visited/visited.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { SearchedComponent } from './pages/searched/searched.component';
+import { VisitedComponent } from './pages/visited/visited.component';
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
