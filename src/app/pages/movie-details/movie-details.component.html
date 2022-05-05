@@ -1,10 +1,11 @@
 <div class="bg-img">
-    <img [src]="imageUrl + movie?.backdrop_path" alt="bg-image" *ngIf="movie?.backdrop_path !== null">
+    <div [style]="'background-image:url('+environment.bgImageUrl + movie?.backdrop_path+')'" class="bg-image" alt="bg-image"
+        *ngIf="movie?.backdrop_path !== null"></div>
     <img [src]="'../../../assets/blank-image.jpg'" alt="blank" *ngIf="movie?.backdrop_path == null">
 </div>
-<div class="details d-flex">
+<div class="details">
     <div class="poster-side mx-5">
-        <img [src]="imageUrl + movie?.poster_path" alt="poster" *ngIf="movie?.poster_path !== null">
+        <img [src]="environment.imageUrl + movie?.poster_path" alt="poster" *ngIf="movie?.poster_path !== null">
         <img [src]="'../../../assets/blank-image.jpg'" alt="image" *ngIf="movie?.poster_path == null">
 
         <div class="d-flex justify-content-between align-items-center mt-2">
@@ -26,12 +27,12 @@
     <div class="about pt-4">
         <div>
             <span *ngFor="let genre of movie?.genres" class="bg-light mx-1 p-1 rounded-3">{{genre.name}} </span>
-            <div class="badge bg-primary text-wrap mx-3 p-2">
+            <div class="badge bg-primary text-wrap mx-3 my-2 p-2">
                 {{movie?.runtime}} min
             </div>
         </div>
 
-        <h1 class="mt-1">{{movie?.title}}</h1>
+        <h1 class="mt-2">{{movie?.title}}</h1>
         <span>{{movie?.tagline}}</span>
         <br>
         <br>
@@ -42,25 +43,25 @@
 
 <h4 class="mt-5 mx-5">Cast & Crew</h4>
 
-<div class="d-flex mx-3 my-3 overflow-auto credits">
+<div class="d-flex mx-3 my-3 overflow-auto credits scroll-bar">
 
     <div class="actor" *ngFor="let cast of movie?.credits.cast">
-        <img [src]="imageUrl + cast.profile_path " alt="profile" *ngIf="cast.profile_path !== null">
+        <img [src]="environment.castImageUrl + cast.profile_path " alt="profile" *ngIf="cast.profile_path !== null">
         <img [src]="'../../../assets/blank-profile.webp'" alt="profile" *ngIf="cast.profile_path == null">
-        <h4>{{cast.name}}</h4>
+        <p>{{cast.name}}</p>
         <span>{{cast.character}}</span>
     </div>
 
     <div class="actor" *ngFor="let crew of movie?.credits.crew">
-        <img [src]="imageUrl + crew.profile_path " alt="profile" *ngIf="crew.profile_path !== null">
+        <img [src]="environment.castImageUrl + crew.profile_path " alt="profile" *ngIf="crew.profile_path !== null">
         <img [src]="'../../../assets/blank-profile.webp'" alt="profile" *ngIf="crew.profile_path == null">
-        <h4>{{crew.name}}</h4>
+        <p>{{crew.name}}</p>
         <span>{{crew.job}}</span>
     </div>
 
 </div>
 
-<div class="m-5 pt-5">
+<div class="mx-3 pt-5">
     <h2>Recommended Movies</h2>
     <span *ngIf="recommendedM?.results.length == 0">No Movies</span>
     <app-movie [movies]="recommendedM?.results"></app-movie>

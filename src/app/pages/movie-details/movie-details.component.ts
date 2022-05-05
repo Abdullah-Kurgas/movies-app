@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from 'src/app/components/shared/spinner.service';
+import { environment } from 'src/environments/environment.prod';
 import { MovieService } from '../../components/shared/movie.service';
 
 @Component({
@@ -13,11 +14,12 @@ export class MovieDetailsComponent implements OnInit {
   rating: number = Math.round(3);
   id!: number;
   movie!: any;
-  imageUrl: string = 'https://image.tmdb.org/t/p/w500';
   recommendedM: any;
   similarM: any;
   favorites: any = [];
   localFavorites: any = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+  environment = environment;
 
   constructor(
     private activatedRouter: ActivatedRoute,

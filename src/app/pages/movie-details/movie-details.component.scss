@@ -1,7 +1,9 @@
 .bg-img {
 
-    img {
-        width: 100%;
+    div {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         height: 70vh;
     }
 }
@@ -9,7 +11,7 @@
 .details {
 
     .poster-side {
-        width: 15%;
+        width: 15rem;
         position: absolute;
         bottom: 0;
 
@@ -31,15 +33,10 @@
     }
 
     .about {
-        margin-left: 22%;
-        width: 40%;
+        margin-left: 20rem;
 
         span {
             font-size: 14px;
-        }
-
-        .genre {
-            font-size: 13px;
         }
     }
 }
@@ -47,23 +44,46 @@
 .credits {
     .actor {
         margin: 15px;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+        text-align: center;
+        padding-bottom: 10px;
+        border-radius: 8px;
 
         img {
-            width: 14vw;
-            height: 35vh;
-            margin-bottom: 5px;
+            min-width: 140px;
+            width: 140px;
+            background-color: #fff;
+            border-radius: 8px 8px 0 0;
+        }
 
-            &:hover {
-                opacity: .8;
-            }
+        p{
+            font-weight: bold;
+            font-size: 1em;
+            padding-top: 10px;
+            padding: 10px 10px 0 10px;
+            margin: 0;
         }
 
         span {
-            font-style: italic;
+            font-size: 0.9em;
         }
     }
+}
 
-    &::-webkit-scrollbar {
-        display: none;
+@media screen and (max-width: 500px){
+    .details{
+        display: flex;
+        flex-direction: column;
+
+        .poster-side{
+            left: 50%;
+            transform: translate(-70%, 0);
+        }
+
+        .about{
+            margin-left: 0;
+            margin-top: 23vh;
+            text-align: center;
+        }
     }
 }
