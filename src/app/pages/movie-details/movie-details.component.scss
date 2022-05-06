@@ -1,10 +1,13 @@
 .bg-img {
-
     div {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         height: 70vh;
+    }
+    img{
+        height: 70vh;
+        width: 100%;
     }
 }
 
@@ -13,7 +16,7 @@
     .poster-side {
         width: 15rem;
         position: absolute;
-        bottom: 0;
+        bottom: 1rem;
 
         img {
             width: 100%;
