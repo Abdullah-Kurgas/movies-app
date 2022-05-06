@@ -4,7 +4,7 @@
         <div class="spinner-border spinner-border-sm icon m-2" role="status" [hidden]="!spinnerService.isLoading">
             <span class="visually-hidden">Loading...</span>
         </div>
-        <input class="field w-100" type="text" [(ngModel)]="searchName" (keyup)="sensSearch($event)"
+        <input class="field w-100" type="text" [(ngModel)]="searchName" (ngModelChange)="sensSearch($event, 'normal')"
             (keyup.enter)="searchMovie()" placeholder="Search..." />
     </div>
 
@@ -31,18 +31,20 @@
             <div class="spinner-border spinner-border-sm icon m-2" role="status" [hidden]="!spinnerService.isLoading">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <input class="field w-100" type="text" [(ngModel)]="searchName" (keyup)="sensSearch($event)"
+            <input class="field w-100" type="text" [(ngModel)]="searchName" (ngModelChange)="sensSearch($event, 'side')"
                 (keyup.enter)="searchMovie()" placeholder="Search..." />
         </div>
         <div class="links mt-3 text-white">
-            <span class="px-3" [routerLink]="['/favorites']" (click)="isHiddenSideBar = true" routerLinkActive="active">Favorites</span>
-            <span class="px-3" [routerLink]="['/visited']" (click)="isHiddenSideBar = true" routerLinkActive="active">Visited</span>
+            <span class="px-3" [routerLink]="['/favorites']" (click)="isHiddenSideBar = true"
+                routerLinkActive="active">Favorites</span>
+            <span class="px-3" [routerLink]="['/visited']" (click)="isHiddenSideBar = true"
+                routerLinkActive="active">Visited</span>
         </div>
     </div>
 </div>
 
 <!-- Search div -->
-<div class="moviesDiv scroll-bar" [class]="shown ? '' : 'none'">
+<div [ngClass]="{'normal-search': searchType !== 'side','side-search':searchType == 'side', none: !shown}" class="scroll-bar" [style]="isHiddenSideBar && searchType == 'side' ? 'width:0': ''">
 
     <div class="d-flex justify-content-center" *ngIf="searchedMovies?.results.length == 0">
         <span>No matches</span>

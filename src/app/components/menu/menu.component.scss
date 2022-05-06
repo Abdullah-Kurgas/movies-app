@@ -40,7 +40,7 @@ div {
     }
 }
 
-.menu-icon{
+.menu-icon {
     position: absolute;
     width: 0;
     right: 3rem;
@@ -58,7 +58,7 @@ div {
     display: none;
 }
 
-.side-bar{
+.side-bar {
     position: fixed;
     z-index: 100;
     background-color: #3f3e50fc;
@@ -69,7 +69,20 @@ div {
     transition: all 0.7s ease-in-out;
 }
 
-.moviesDiv {        
+.side-search {
+    height: 78vh;
+    position: absolute;
+    z-index: 102;
+    width: 100%;
+    right: 0;
+    top: 22vh;
+    overflow: auto;
+    opacity: 1;
+    transition: all 0.7s ease-in-out;
+}
+
+.normal-search {
+    min-width: 30rem;
     height: 65vh;
     background-color: #a0a0a0;
     position: absolute;
@@ -78,48 +91,48 @@ div {
     top: 13vh;
     overflow: auto;
     border-radius: 10px;
+}
 
-    .smMovie {
-        display: flex;
-        padding: 10px 15px;
-        height: 20vh;
+.smMovie {
+    display: flex;
+    padding: 10px 15px;
+    height: 20vh;
 
-        .imageDiv {
-            img {
-                height: 100%;
+    .imageDiv {
+        img {
+            height: 100%;
+        }
+    }
+
+    .smInfo {
+        color: #d4d4d4;
+        width: 20vw;
+
+        div {
+            font-size: 13px;
+
+            i {
+                color: yellow;
             }
         }
+    }
 
-        .smInfo {
-            color: #d4d4d4;
-            width: 20vw;
+    .genre {
+        width: 20vw;
 
-            div {
-                font-size: 13px;
-
-                i {
-                    color: yellow;
-                }
-            }
+        div {
+            display: inline-block;
+            padding: 1px;
+            margin: 2px;
+            font-size: 13px;
+            background-color: #cacacad8;
+            border-radius: 5px;
+            color: #3f3e50;
         }
+    }
 
-        .genre {
-            width: 20vw;
-
-            div {
-                display: inline-block;
-                padding: 1px;
-                margin: 2px;
-                font-size: 13px;
-                background-color: #cacacad8;
-                border-radius: 5px;
-                color: #3f3e50;
-            }
-        }
-
-        &:hover {
-            cursor: pointer;
-            background-color: #929191;
-        }
+    &:hover {
+        cursor: pointer;
+        background-color: #929191;
     }
 }
