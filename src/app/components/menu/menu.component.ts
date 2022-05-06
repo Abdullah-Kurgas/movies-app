@@ -17,6 +17,8 @@ export class MenuComponent implements OnInit {
   genres: any;
   visited: any = [];
 
+  isHiddenSideBar: boolean = true;
+
   constructor(
     private movieService: MovieService,
     public spinnerService: SpinnerService,
@@ -68,6 +70,10 @@ export class MenuComponent implements OnInit {
         this.genres = genre;
       }
     )
+  }
+
+  showSideBar(){
+    this.isHiddenSideBar = !this.isHiddenSideBar;
   }
 
 }

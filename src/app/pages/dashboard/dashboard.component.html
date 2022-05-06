@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mb-3">
-        <button class="btn btn-outline-secondary" [disabled]="spinnerService.isLoading" (click)="loadMore()">Load More</button>
+    <div class="d-flex justify-content-center pb-3">
+        <button class="btn btn-outline-secondary" [hidden]="spinnerService.isLoading" (click)="loadMore()">Load More</button>
     </div>
 </div>

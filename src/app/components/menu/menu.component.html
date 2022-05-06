@@ -3,19 +3,45 @@
         <i class="bi bi-search icon py-1 px-2" [hidden]="spinnerService.isLoading"></i>
         <div class="spinner-border spinner-border-sm icon m-2" role="status" [hidden]="!spinnerService.isLoading">
             <span class="visually-hidden">Loading...</span>
-          </div>
+        </div>
         <input class="field w-100" type="text" [(ngModel)]="searchName" (keyup)="sensSearch($event)"
-            (keyup.enter)="searchMovie()" placeholder="Search..."/>
+            (keyup.enter)="searchMovie()" placeholder="Search..." />
     </div>
 
     <img src="../../../assets/movie-logo.png" alt="logo" class="col-4 mx-auto" [routerLink]="['/']">
 
-    <div class="col-4 text-endx links d-none d-md-block text-end">
+    <div class="col-4 links d-none d-md-block text-end">
         <span class="px-3" [routerLink]="['/favorites']" routerLinkActive="active">Favorites</span>
         <span class="px-3" [routerLink]="['/visited']" routerLinkActive="active">Visited</span>
     </div>
+
+    <div class="menu-icon d-inline d-sm-inline d-md-none" (click)="showSideBar()"
+        [style.color]="isHiddenSideBar ? 'black' : 'white'">
+        <i class="bi bi-list" [hidden]="!isHiddenSideBar"></i>
+        <i class="bi bi-x-lg fs-3" [hidden]="isHiddenSideBar"></i>
+    </div>
 </div>
 
+<!-- Sidebar can be shown only in tablets && phones -->
+<div class="side-bar" [style.width]="!isHiddenSideBar ? '100%' : '0'">
+    <div class="d-flex flex-column align-items-center mt-5 pt-3"
+        [style]="isHiddenSideBar ? 'opacity:0; transition: all 0.7s ease-in-out;' : 'opacity:1; transition: all 0.7s ease-in-out;'">
+        <div class=" d-flex align-items-center">
+            <i class="bi bi-search icon py-1 px-2" [hidden]="spinnerService.isLoading"></i>
+            <div class="spinner-border spinner-border-sm icon m-2" role="status" [hidden]="!spinnerService.isLoading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <input class="field w-100" type="text" [(ngModel)]="searchName" (keyup)="sensSearch($event)"
+                (keyup.enter)="searchMovie()" placeholder="Search..." />
+        </div>
+        <div class="links mt-3 text-white">
+            <span class="px-3" [routerLink]="['/favorites']" (click)="isHiddenSideBar = true" routerLinkActive="active">Favorites</span>
+            <span class="px-3" [routerLink]="['/visited']" (click)="isHiddenSideBar = true" routerLinkActive="active">Visited</span>
+        </div>
+    </div>
+</div>
+
+<!-- Search div -->
 <div class="moviesDiv scroll-bar" [class]="shown ? '' : 'none'">
 
     <div class="d-flex justify-content-center" *ngIf="searchedMovies?.results.length == 0">
